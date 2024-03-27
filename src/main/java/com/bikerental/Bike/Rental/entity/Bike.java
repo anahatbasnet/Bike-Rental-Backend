@@ -1,4 +1,4 @@
-package com.bikerental.Bike.Rental;
+package com.bikerental.Bike.Rental.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +11,7 @@ import lombok.Data;
 
 public class Bike {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
 
     private Integer id;
     private String bikeName;
