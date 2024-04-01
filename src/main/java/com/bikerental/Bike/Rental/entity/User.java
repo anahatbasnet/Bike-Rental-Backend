@@ -1,40 +1,21 @@
 package com.bikerental.Bike.Rental.entity;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.util.Collection;
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name="users",uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Data
+
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
-    @Column(name="full_name")
-private String fullName;
-private String email;
-private String password;
-@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-@JoinTable(
-        name = "user_roles",
-        joinColumns = @JoinColumn(
-                name = "user_id",referencedColumnName = "id"
-        ),
-        inverseJoinColumns = @JoinColumn(
-                name = "role_id",referencedColumnName = "id"
-        )
-)
-private Collection<Role> roles;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String username;
+    private String fullName;
+    private String email;
+    private String password;
 
-    public <T> User(String fullName, String email, String password, List<T> roleUser) {
-    }
 }
