@@ -6,16 +6,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-@Entity
 @Data
+@Entity
 
-public class User {
+public class RentedBikes {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String username;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String fullName;
     private String email;
-    private String password;
-
+    private String phoneNo;
+    private String age;
+    private String address;
+    private String country;
 }

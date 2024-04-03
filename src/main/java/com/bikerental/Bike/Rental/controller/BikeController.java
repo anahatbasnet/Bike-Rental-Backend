@@ -32,17 +32,17 @@ public class BikeController {
         return bikeService.getBikeById(id);
     }
 
-    @PostMapping("addBike")
+    @PostMapping("/admin/addBike")
     public Response<Bike> addBike(@RequestBody Bike bike){
         return bikeService.addBike(bike);
     }
 
-    @PutMapping("updateBike/{id}")
+    @PutMapping("/admin/updateBike/{id}")
     public Response<Bike> updateBike(@PathVariable("id") int id, @RequestBody Bike bike){
         return bikeService.updateBike(id, bike);
     }
 
-    @DeleteMapping("deleteBike/{id}")
+    @DeleteMapping("/admin/deleteBike/{id}")
     public void deleteBike(@PathVariable("id") int id){
         bikeService.deleteBike(id);
     }
