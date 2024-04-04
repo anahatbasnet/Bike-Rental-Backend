@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminUsers {
     @GetMapping("/user/alone")
     public ResponseEntity<Object> userAlone(){
-        return ResponseEntity.ok("USers alone can access this ApI only");
+        return ResponseEntity.ok("Users alone can access this ApI only");
     }
 
     @GetMapping("/adminuser/both")
@@ -24,9 +24,9 @@ public class AdminUsers {
     @GetMapping("/public/email")
     public String getCurrentUserEmail() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(authentication); //get all details(name,email,password,roles e.t.c) of the user
-        System.out.println(authentication.getDetails()); // get remote ip
-        System.out.println(authentication.getName()); //returns the email because the email is the unique identifier
-        return authentication.getName(); // returns the email
+        System.out.println(authentication);
+        System.out.println(authentication.getDetails());
+        System.out.println(authentication.getName());
+        return authentication.getName();
     }
 }

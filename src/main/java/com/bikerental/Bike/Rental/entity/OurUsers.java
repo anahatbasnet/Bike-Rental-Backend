@@ -18,6 +18,7 @@ public class OurUsers implements UserDetails {
 
     private Integer id;
     private String email;
+    private String fullName;
     private String password;
     private String role;
     @Override

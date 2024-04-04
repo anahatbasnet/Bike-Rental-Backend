@@ -26,5 +26,7 @@ public class ReqRes {
     private String password;
     private List<Bike> bike;
     private OurUsers ourUsers;
+    private String fullName;
+
 
 }

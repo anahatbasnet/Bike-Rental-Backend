@@ -23,20 +23,31 @@ public class AuthService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    public ReqRes signUp(ReqRes registrationRequest){
+    public ReqRes signUp(ReqRes registrationRequest) {
         ReqRes resp = new ReqRes();
+
         try {
+
+            if (userRepo.existsByEmail(registrationRequest.getEmail())) {
+                resp.setStatusCode(400);
+                resp.setMessage("Email address is already registered.");
+                return resp;
+            }
+
+            // Proceed with registration
             OurUsers ourUsers = new OurUsers();
             ourUsers.setEmail(registrationRequest.getEmail());
+            ourUsers.setFullName(registrationRequest.getFullName());
             ourUsers.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
             ourUsers.setRole(registrationRequest.getRole());
             OurUsers ourUserResult = userRepo.save(ourUsers);
-            if (ourUserResult != null && ourUserResult.getId()>0) {
+            if (ourUserResult != null && ourUserResult.getId() > 0) {
                 resp.setOurUsers(ourUserResult);
                 resp.setMessage("User Saved Successfully");
                 resp.setStatusCode(200);
             }
-        }catch (Exception e){
+
+        } catch (Exception e) {
             resp.setStatusCode(500);
             resp.setError(e.getMessage());
         }
