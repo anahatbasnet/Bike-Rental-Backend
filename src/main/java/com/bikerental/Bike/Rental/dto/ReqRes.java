@@ -27,6 +27,10 @@ public class ReqRes {
     private List<Bike> bike;
     private OurUsers ourUsers;
     private String fullName;
+    private String responseCode;
 
 
+    public void setResponseCode(String responseCode) {
+        this.responseCode = responseCode;
+    }
 }

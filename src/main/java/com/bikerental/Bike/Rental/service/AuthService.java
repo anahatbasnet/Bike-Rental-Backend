@@ -31,6 +31,7 @@ public class AuthService {
             if (userRepo.existsByEmail(registrationRequest.getEmail())) {
                 resp.setStatusCode(400);
                 resp.setMessage("Email address is already registered.");
+                resp.setResponseCode("EMAIL_ALREADY_REGISTERED");
                 return resp;
             }
 
@@ -50,6 +51,7 @@ public class AuthService {
         } catch (Exception e) {
             resp.setStatusCode(500);
             resp.setError(e.getMessage());
+            resp.setResponseCode("INTERNAL_SERVER_ERROR");
         }
         return resp;
     }
@@ -71,19 +73,20 @@ public class AuthService {
         }catch (Exception e){
             response.setStatusCode(500);
             response.setError(e.getMessage());
+            response.setMessage("Bad Credentials");
         }
         return response;
     }
 
-    public ReqRes refreshToken(ReqRes refreshTokenReqiest){
+    public ReqRes refreshToken(ReqRes refreshTokenRequest){
         ReqRes response = new ReqRes();
-        String ourEmail = jwtUtils.extractUsername(refreshTokenReqiest.getToken());
+        String ourEmail = jwtUtils.extractUsername(refreshTokenRequest.getToken());
         OurUsers users = userRepo.findByEmail(ourEmail).orElseThrow();
-        if (jwtUtils.isTokenValid(refreshTokenReqiest.getToken(), users)) {
+        if (jwtUtils.isTokenValid(refreshTokenRequest.getToken(), users)) {
             var jwt = jwtUtils.generateToken(users);
             response.setStatusCode(200);
             response.setToken(jwt);
-            response.setRefreshToken(refreshTokenReqiest.getToken());
+            response.setRefreshToken(refreshTokenRequest.getToken());
             response.setExpirationTime("24Hr");
             response.setMessage("Successfully Refreshed Token");
         }
