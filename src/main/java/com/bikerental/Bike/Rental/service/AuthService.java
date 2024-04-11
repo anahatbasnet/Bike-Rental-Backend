@@ -35,7 +35,7 @@ public class AuthService {
                 return resp;
             }
 
-            // Proceed with registration
+
             OurUsers ourUsers = new OurUsers();
             ourUsers.setEmail(registrationRequest.getEmail());
             ourUsers.setFullName(registrationRequest.getFullName());

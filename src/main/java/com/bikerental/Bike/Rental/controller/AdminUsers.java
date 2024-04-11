@@ -20,7 +20,7 @@ public class AdminUsers {
         return ResponseEntity.ok("Both Admin and Users Can  access the api");
     }
 
-    /** You can use this to get the details(name,email,role,ip, e.t.c) of user accessing the service*/
+
     @GetMapping("/public/email")
     public String getCurrentUserEmail() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

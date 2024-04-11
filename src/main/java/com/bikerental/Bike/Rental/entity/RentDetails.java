@@ -6,10 +6,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @Entity
 
-public class RentedBikes {
+public class RentDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -19,4 +21,6 @@ public class RentedBikes {
     private String age;
     private String address;
     private String country;
+    private Date startDate;
+    private Date endDate;
 }
