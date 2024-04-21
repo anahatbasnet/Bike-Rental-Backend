@@ -28,6 +28,7 @@ public class RentController {
     public Response<RentDetails> getRentdetailsbyId(@PathVariable("id") int id) {
         return rentService.getRentDetailsbyId(id);
     }
+
     @GetMapping("allRentaldetails")
     public Response<List<RentDetails>> getAllRentDetails() {
 
